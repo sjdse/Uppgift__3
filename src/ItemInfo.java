@@ -1,8 +1,8 @@
 public class ItemInfo {
     private String itemName;
-    private int matCost;
-    private int itemSellPrice;
-    private double itemExp;
+    private int matCost = -1;
+    private int itemSellPrice = -1;
+    private int itemExp = -1;
 
     //final static double TIMEPERITEM = 3.6; //main?
 
@@ -14,15 +14,24 @@ public class ItemInfo {
     }
 
     public void setItemSellPrice(int itemSellPrice) {
-        this.itemSellPrice = itemSellPrice;
+        if (itemSellPrice >= 0)
+            this.itemSellPrice = itemSellPrice;
+        else
+            System.out.println("Sell price can't be negative.");
     }
 
     public void setMatCost(int matCost) {
-        this.matCost = matCost;
+        if (matCost >= 0)
+            this.matCost = matCost;
+        else
+            System.out.println("You're not getting paid to get the materials");
     }
 
     public void setItemExp(int itemExp) {
+        if (itemExp >= 0)
         this.itemExp = itemExp;
+        else
+            System.out.println("You can't lose experience from crafting an item.");
     }
 
     public String getItemName() {
@@ -37,7 +46,7 @@ public class ItemInfo {
         return this.matCost;
     }
 
-    public double getItemExp() {
+    public int getItemExp() {
         return this.itemExp;
     }
 

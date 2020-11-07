@@ -1,11 +1,8 @@
-import com.sun.security.jgss.GSSUtil;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String errorMessage = "Something went wrong during your input. Restart the program and try again.";
+        String errorMessage = "Input was not a number or the number is outside the allowed range. Try again.";
         UserInfo u1 = new UserInfo();
         ItemInfo i1 = new ItemInfo();   //pre-generated item
         ItemInfo i2 = new ItemInfo();   //user-generated item
@@ -19,19 +16,20 @@ public class Main {
         while (true) {
             Scanner Input = new Scanner(System.in);
             int option = 0;
-            String scannerclear;
+            //String scannerclear;            //used to remove buffered string in scanner if there was an invalid input - variable not needed(?)
 
-            System.out.println("1. Set user stats\n2. Choose method\n3. Calculate!\n4. Exit program");      //Menu output
+            System.out.println("\n1. Set user stats\n2. Choose method\n3. Show inputs & start calculation\n4. Exit program");      //Menu output
 
             if (Input.hasNextInt()) {
                 option = Input.nextInt();
-                scannerclear = Input.nextLine();     //removes buffered string if there was a invalid input
+                Input.nextLine();     //removes buffered string if there was a invalid input
                 if (option < 1 || option > 4) {
                     System.out.println("Invalid input. You need to choose from one of the available options.\n");
                 }
             } else {
                 System.out.println("Invalid input. You need to choose from one of the available options.\n");
             }
+
             /*
             try {
                 option = Integer.parseInt(Input.nextLine());
@@ -44,70 +42,83 @@ public class Main {
                 case 1 -> {
                     System.out.println("What is your username?");
                     u1.setUserName(Input.nextLine());
+
                     System.out.println("What is your current experience points?");
                     if (Input.hasNextInt()) {
                         u1.setCurrExp(Input.nextInt());
                     } else {
-                        System.out.println("Input was not a number. Try again.");
-                        scannerclear = Input.next();
-                        break;
-                    }
-                        /*
-                    try {
-                        u1.setCurrExp(Input.nextInt());
-                    } catch (InputMismatchException e) {
                         System.out.println(errorMessage);
-                        break;
-                        //Input.next();                                   //With input.next instead of the throw new below
-                        //       throw new InputMismatchException();           //it still seems to work fine. The value missed will be 0 though. fixable?
-                    }*/
-                    System.out.println("What is your goal experience points?");
+                        Input.next();
+                        break;                                                  //leaves switch if invalid input
+                    }
 
-                    try {
+                    System.out.println("What is your goal experience points?");
+                    if (Input.hasNextInt())
                         u1.setGoalExp(Input.nextInt());
-                    } catch (InputMismatchException e) {
+                    else {
                         System.out.println(errorMessage);
-                        throw new InputMismatchException();
+                        Input.next();
+                        break;
                     }
+
                     System.out.println("How much gold do you have?");
-                    try {
+                    if (Input.hasNextInt())
                         u1.setGold(Input.nextInt());
-                    } catch (InputMismatchException e) {
+                    else {
                         System.out.println(errorMessage);
-                        throw new InputMismatchException("Input has to be a number.");
+                        Input.next();
                     }
                 }
                 case 2 -> {
                     System.out.println("What is the name of the item that you will craft?");
                     i2.setItemName(Input.nextLine());
                     System.out.println("How much does the materials for that item cost?");
-                    try {
+
+                    if (Input.hasNextInt())
                         i2.setMatCost(Input.nextInt());
-                    } catch (InputMismatchException e) {
+                    else {
                         System.out.println(errorMessage);
-                        throw new InputMismatchException("Input has to be a number.");
+                        Input.next();
+                        break;
                     }
+
                     System.out.println("How much experience do you get for crafting that item?");
-                    try {
+
+                    if (Input.hasNextInt())
                         i2.setItemExp(Input.nextInt());
-                    } catch (InputMismatchException e) {
+                    else {
                         System.out.println(errorMessage);
-                        throw new InputMismatchException("Input has to be a number.");
+                        Input.next();
+                        break;
                     }
                     System.out.println("How much does the item sell for?");
-                    try {
+
+                    if (Input.hasNextInt())
                         i2.setItemSellPrice(Input.nextInt());
-                    } catch (InputMismatchException e) {
+                    else {
                         System.out.println(errorMessage);
-                        throw new InputMismatchException("Input has to be a number.");
+                        Input.next();
                     }
                 }
                 case 3 -> {
-                    System.out.println("Starting test of case 1...");
-                    System.out.println("Username: " + u1.getUserName());
-                    System.out.printf("Current experience: %,d", u1.getCurrExp());
-                    System.out.printf("\nExperience goal: %,d", u1.getGoalExp());
-                    System.out.printf("\nGold: %,d\n", u1.getGold());
+                    if (u1.getGold() >= 0) {
+                        System.out.println("*** User Info ***");
+                        System.out.println("Username: " + u1.getUserName());
+                        System.out.printf("Current experience: %,d", u1.getCurrExp());
+                        System.out.printf("\nExperience goal: %,d", u1.getGoalExp());
+                        System.out.printf("\nGold: %,d\n", u1.getGold());
+                    }
+                    if (i2.getItemName() != null && i2.getItemSellPrice() >= 0) {
+                        System.out.println("---------------------------------------------------");
+                        System.out.println("*** Item Info ***");
+                        System.out.println("Item name: " + i2.getItemName());
+                        System.out.printf("Material cost: %,d", i2.getMatCost());
+                        System.out.printf("\nExperience for crafting: %,d", i2.getItemExp());
+                        System.out.printf("\nItem sell price: %,d\n", i2.getItemSellPrice());
+                    } else {        //Only shows up if user didn't make any input or made a mistake in case 2.
+                        System.out.println("*** Base item info ***");
+                    }
+                    System.out.println();
                 }
                 case 4 -> {
                     System.out.println("Thanks for using this program!\nExiting...");
