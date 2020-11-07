@@ -108,16 +108,35 @@ public class Main {
                         System.out.printf("\nExperience goal: %,d", u1.getGoalExp());
                         System.out.printf("\nGold: %,d\n", u1.getGold());
                     }
-                    if (i2.getItemName() != null && i2.getItemSellPrice() >= 0) {
+                    if (i2.getItemName() != null && i2.getItemSellPrice() >= 0) { //Only runs if
                         System.out.println("---------------------------------------------------");
                         System.out.println("*** Item Info ***");
                         System.out.println("Item name: " + i2.getItemName());
                         System.out.printf("Material cost: %,d", i2.getMatCost());
                         System.out.printf("\nExperience for crafting: %,d", i2.getItemExp());
                         System.out.printf("\nItem sell price: %,d\n", i2.getItemSellPrice());
+                        System.out.println("---------------------------------------------------");
+                        /*
+                        Probably make these below into variables?
+                        100% unreadable
+                         */
+                        System.out.println("Exp to goal: " + (u1.getGoalExp()-u1.getCurrExp()));
+                        System.out.println("Crafts to goal: %.0f" + (Math.ceil((double)(u1.getGoalExp()-u1.getCurrExp()) / i2.getItemExp()))); //# of crafts to goal, casted to double and rounded up to make sure the goal is met
+                        System.out.printf("\nTotal cost: %.0f", (Math.ceil((double)(u1.getGoalExp()-u1.getCurrExp()) / i2.getItemExp())*(i2.getItemSellPrice()-i2.getMatCost())));
+                        System.out.println("\nGold after: " + (u1.getGold()-(Math.ceil((double)(u1.getGoalExp()-u1.getCurrExp()) / i2.getItemExp())*(i2.getItemSellPrice()-i2.getMatCost()))));
                     } else {        //Only shows up if user didn't make any input or made a mistake in case 2.
                         System.out.println("*** Base item info ***");
+                        System.out.println(i1.getItemName());
+                        System.out.printf("Material cost: %,d", i1.getMatCost());
+                        System.out.printf("\nExperience for crafting: %,d", i1.getItemExp());
+                        System.out.printf("\nItem sell price: %,d\n", i1.getItemSellPrice());
+                        System.out.println("---------------------------------------------------");
+                        System.out.println("Exp to goal: ");
+                        System.out.println("Crafts to goal: ");
+                        System.out.println("Total cost/profit: ");
+                        System.out.println("Gold after: ");
                     }
+
                     System.out.println();
                 }
                 case 4 -> {
