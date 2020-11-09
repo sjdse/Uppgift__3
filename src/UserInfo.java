@@ -44,8 +44,10 @@ public class UserInfo {
     public void setGoalExp(int goalExp) {
         if (goalExp > getCurrExp())
             this.goalExp = goalExp;
-        else
+        else {
             System.out.println("Your goal has to be higher than where you're at!");
+            this.goalExp = -1;  // Resets goalExp if it failed to be set. Used for when changing userinfo after being in case 3 already
+        }
     }
 
 /*
