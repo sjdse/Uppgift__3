@@ -16,7 +16,7 @@ public class UserInfo {
         if (gold >= 0)
             this.gold = gold;
         else
-            System.out.println("You're not allowed to be in debt.");
+            System.out.println("You're not allowed to be in debt.");    //error message if the "setters" dont get a new value.
     }
 
     public void setCurrExp(int currExp) {
@@ -50,4 +50,23 @@ public class UserInfo {
         return this.goalExp;
     }
 
+
+
+    public int expToGoal(){
+        return (this.goalExp - this.currExp);
+    }
+
+    public double goldLeft(double cost){
+        return this.gold + cost;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("*** User Info ***" +
+                "\nUsername: %s" +
+                "\nCurrent experience: %,d" +
+                "\nExperience goal: %,d" +
+                "\nGold: %,d" +
+                "\n---------------------------------------------------", this.userName, this.currExp, this.goalExp, this.gold);
+    }
 }
