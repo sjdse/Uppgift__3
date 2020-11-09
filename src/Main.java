@@ -1,7 +1,13 @@
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * This method is a menu and takes inputs from the user and uses instance variables to store the inputs.
+     * It will then print things based on what the user has written.
+     * @param args
+     */
     public static void main(String[] args) {
+
         String errorMessage = "Input was not a number or the number is outside the allowed range. Try again.";
         UserInfo u1 = new UserInfo();
         ItemInfo i1 = new ItemInfo();
