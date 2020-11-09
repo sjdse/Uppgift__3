@@ -4,7 +4,6 @@ public class ItemInfo {
     private int itemSellPrice = -1;
     private int itemExp = -1;
 
-    //final static double TIMEPERITEM = 3.6; //main?
 
     public void setItemName(String itemName) {
         if (itemName != null)
@@ -29,7 +28,7 @@ public class ItemInfo {
 
     public void setItemExp(int itemExp) {
         if (itemExp >= 0)
-        this.itemExp = itemExp;
+            this.itemExp = itemExp;
         else
             System.out.println("You can't lose experience from crafting an item.");
     }
@@ -38,16 +37,37 @@ public class ItemInfo {
         return this.itemName;
     }
 
+
     public int getItemSellPrice() {
         return this.itemSellPrice;
     }
-
+/*
     public int getMatCost() {
         return this.matCost;
     }
-
+ */
+/*
     public int getItemExp() {
         return this.itemExp;
+    }
+ */
+
+    public double craftsToGoal(int exp){
+        return Math.ceil((double)exp/this.itemExp);
+    }
+    public double totalCost(double crafts){
+        return crafts * (itemSellPrice - matCost);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\n*** Item Info ***" +
+                        "\nItem name: %s" +
+                        "\nMaterial cost: %,d" +
+                        "\nExperience for crafting: %,d" +
+                        "\nItem sell price: %,d" +
+                        "\n---------------------------------------------------"
+                , this.itemName, this.matCost, this.itemExp, this.itemSellPrice);
     }
 
 }
