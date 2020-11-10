@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         String errorMessage = "Input was not a number or the number is outside the allowed range. Try again.";
+        String endOfFileMessage = "End of file reached.\nClosing program...\n";
         UserInfo u1 = new UserInfo();
         ItemInfo i1 = new ItemInfo();
         boolean case3Blocker = false; // blocks access to case 3 in the switch until case 1 & 2 are correctly done
@@ -33,24 +36,32 @@ public class Main {
             } else if (Input.hasNextLine()) {           //invalid output for anything(?) but int
                 System.out.println("Invalid input. You need to choose from one of the available options.");
             } else {                                    //closes program if EOF (Ctrl-D)
-                System.out.println("End of file reached.\nClosing program...\n");
-                System.exit(0);        //program closes
+                System.out.println(endOfFileMessage);
+                System.exit(0);
             }
 
             switch (option) {
                 case 1 -> {
                     System.out.println("What is your username?");
-                    u1.setUserName(Input.nextLine());
+                    if(Input.hasNextLine()){
+                        u1.setUserName(Input.nextLine());
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
+                    }
 
                     System.out.println("What is your current experience points?");
                     if (Input.hasNextInt()) {
                         u1.setCurrExp(Input.nextInt());
                         case3Blocker = true;
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
                         break;                                                  //leaves switch if invalid input
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
 
                     System.out.println("What is your goal experience points?");
@@ -60,54 +71,74 @@ public class Main {
                             case3Blocker = false;
                             break;
                         }
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
                         break;
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
 
                     System.out.println("How much gold do you have?");
                     if (Input.hasNextInt()) {
                         u1.setGold(Input.nextInt());
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
                 }
                 case 2 -> {
                     System.out.println("What is the name of the item that you will craft?");
-                    i1.setItemName(Input.nextLine());
+                    if(Input.hasNextLine()){
+                        i1.setItemName(Input.nextLine());
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
+                    }
 
                     System.out.println("How much does the materials for that item cost?");
                     if (Input.hasNextInt()) {
                         i1.setMatCost(Input.nextInt());
                         case3Blocker = true;
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
                         break;
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
 
                     System.out.println("How much experience do you get for crafting that item?");
                     if (Input.hasNextInt()) {
                         i1.setItemExp(Input.nextInt());
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
                         break;
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
 
                     System.out.println("How much does the item sell for?");
                     if (Input.hasNextInt()) {
                         i1.setItemSellPrice(Input.nextInt());
-                    } else {
+                    } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
                         case3Blocker = false;
+                    } else {
+                        System.out.println(endOfFileMessage);
+                        System.exit(0);
                     }
                 }
                 case 3 -> {
