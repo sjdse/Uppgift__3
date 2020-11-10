@@ -4,6 +4,7 @@ public class Main {
     /**
      * This method is a menu and takes inputs from the user and uses instance variables to store the inputs.
      * It will then print things based on what the user has written.
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class Main {
         UserInfo u1 = new UserInfo();
         ItemInfo i1 = new ItemInfo();
         boolean case3Blocker = false; // blocks access to case 3 in the switch until case 1 & 2 are correctly done
+
 
         while (true) {
             Scanner Input = new Scanner(System.in);
@@ -28,8 +30,11 @@ public class Main {
                 if (option < 1 || option > 4) {
                     System.out.println("Invalid input. You need to choose from one of the available options.\n");
                 }
-            } else {
-                System.out.println("Invalid input. You need to choose from one of the available options.\n");
+            } else if (Input.hasNextLine()) {           //invalid output for anything(?) but int
+                System.out.println("Invalid input. You need to choose from one of the available options.");
+            } else {                                    //closes program if EOF (Ctrl-D)
+                System.out.println("End of file reached.\nClosing program...\n");
+                System.exit(0);        //program closes
             }
 
             switch (option) {
