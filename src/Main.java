@@ -15,8 +15,8 @@ public class Main {
         String endOfFileMessage = "End of file reached.\nClosing program...\n";
         UserInfo u1 = new UserInfo();
         ItemInfo i1 = new ItemInfo();
-        boolean case3Blocker = false; // blocks access to case 3 in the switch until case 1 & 2 are correctly done
-
+        boolean case3Blocker = false; // blocks access to case 3 in the switch until case 1 is correctly done
+        boolean case3Blocker2 = false; // blocks access to case 3 in the switch until case 2 is correctly done
 
         while (true) {
             Scanner Input = new Scanner(System.in);
@@ -105,11 +105,11 @@ public class Main {
                     System.out.println("How much does the materials for that item cost?");
                     if (Input.hasNextInt()) {
                         i1.setMatCost(Input.nextInt());
-                        case3Blocker = true;
+                        case3Blocker2 = true;
                     } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
-                        case3Blocker = false;
+                        case3Blocker2 = false;
                         break;
                     } else {
                         System.out.println(endOfFileMessage);
@@ -122,7 +122,7 @@ public class Main {
                     } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
-                        case3Blocker = false;
+                        case3Blocker2 = false;
                         break;
                     } else {
                         System.out.println(endOfFileMessage);
@@ -135,14 +135,14 @@ public class Main {
                     } else if (Input.hasNextLine()) {
                         System.out.println(errorMessage);
                         Input.next();
-                        case3Blocker = false;
+                        case3Blocker2 = false;
                     } else {
                         System.out.println(endOfFileMessage);
                         System.exit(0);
                     }
                 }
                 case 3 -> {
-                    if (case3Blocker) {   //only runs if the user has gone through entire case 1 & 2 correctly
+                    if (case3Blocker && case3Blocker2) {   //only runs if the user has gone through entire case 1 & 2 correctly
                         System.out.println(u1.toString() + i1.toString());
 
                         System.out.printf("Exp to goal: %,d" +
