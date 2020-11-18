@@ -6,6 +6,7 @@ public class ItemInfo {
 
     /**
      * Method that sets the name of the item that will be crafted
+     *
      * @param itemName is the name of the item that will be set
      */
     public void setItemName(String itemName) {
@@ -17,6 +18,7 @@ public class ItemInfo {
 
     /**
      * Method that sets the sell price of the item
+     *
      * @param itemSellPrice is the sell price that will be set
      */
     public void setItemSellPrice(int itemSellPrice) {
@@ -28,6 +30,7 @@ public class ItemInfo {
 
     /**
      * Method that sets the cost of the materials to craft an item
+     *
      * @param matCost is the matCost that will be set
      */
     public void setMatCost(int matCost) {
@@ -39,6 +42,7 @@ public class ItemInfo {
 
     /**
      * Method that sets the experience gained from crafting an item
+     *
      * @param itemExp is the itemExp that will be set
      */
     public void setItemExp(int itemExp) {
@@ -73,6 +77,7 @@ public class ItemInfo {
 
     /**
      * Method that calculates how many crafts need to be done to get to the goal
+     *
      * @param exp variable for how much experience is needed until goal
      * @return returns crafts needed until goal
      */
@@ -82,6 +87,7 @@ public class ItemInfo {
 
     /**
      * Method that calculates how much it will cost to get to the goal
+     *
      * @param crafts variable for how many crafts that needs to be done
      * @return returns cost to get to goal
      */
@@ -91,6 +97,7 @@ public class ItemInfo {
 
     /**
      * Method used for printing variables from ItemInfo
+     *
      * @return variables from ItemInfo
      */
     @Override

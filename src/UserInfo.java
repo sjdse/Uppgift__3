@@ -6,6 +6,7 @@ public class UserInfo {
 
     /**
      * Method that sets the user's username
+     *
      * @param userName is the username that will be set
      */
     public void setUserName(String userName) {
@@ -17,6 +18,7 @@ public class UserInfo {
 
     /**
      * Method that sets the amount of gold the user has
+     *
      * @param gold is the gold that will be set
      */
     public void setGold(int gold) {
@@ -28,6 +30,7 @@ public class UserInfo {
 
     /**
      * Method that sets the current experience the user has
+     *
      * @param currExp is the currExp that will be set
      */
     public void setCurrExp(int currExp) {
@@ -39,6 +42,7 @@ public class UserInfo {
 
     /**
      * Method that sets the goal experience for the user
+     *
      * @param goalExp is the goalExp that will be set
      */
     public void setGoalExp(int goalExp) {
@@ -63,6 +67,7 @@ public class UserInfo {
 
     /**
      * Method that returns the currExp variable for the object
+     *
      * @return returns currExp
      */
     public int getCurrExp() {
@@ -71,6 +76,7 @@ public class UserInfo {
 
     /**
      * Method that returns the goalExp variable for the object
+     *
      * @return returns goalExp
      */
     public int getGoalExp() {
@@ -79,23 +85,26 @@ public class UserInfo {
 
     /**
      * Method that calculates the experience left until goal for the object
+     *
      * @return returns experience until goal
      */
-    public int expToGoal(){
+    public int expToGoal() {
         return (this.goalExp - this.currExp);
     }
 
     /**
      * Method that calculates how much gold the user will have when goal is completed
+     *
      * @param cost variable for how much it costs to get to the goal
      * @return returns gold left after goal
      */
-    public double goldLeft(double cost){
+    public double goldLeft(double cost) {
         return this.gold + cost;
     }
 
     /**
      * Method used for printing variables from UserInfo
+     *
      * @return variables from UserInfo
      */
     @Override

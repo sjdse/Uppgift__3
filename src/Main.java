@@ -41,7 +41,7 @@ public class Main {
             switch (option) {
                 case 1 -> {
                     System.out.println("What is your username?");
-                    if(Input.hasNextLine()){
+                    if (Input.hasNextLine()) {
                         u1.setUserName(Input.nextLine());
                     } else {
                         System.out.println(endOfFileMessage);
@@ -93,7 +93,7 @@ public class Main {
                 }
                 case 2 -> {
                     System.out.println("What is the name of the item that you will craft?");
-                    if(Input.hasNextLine()){
+                    if (Input.hasNextLine()) {
                         i1.setItemName(Input.nextLine());
                     } else {
                         System.out.println(endOfFileMessage);
@@ -141,7 +141,7 @@ public class Main {
                 }
                 case 3 -> {
                     if (case3Blocker && case3Blocker2) {   //only runs if the user has gone through entire case 1 & 2 correctly
-                        System.out.println(u1.toString() + i1.toString());
+                        System.out.println(u1 + "" + i1);
 
                         System.out.printf("Exp to goal: %,d" +
                                         "\nCrafts to goal: %,.0f" +
